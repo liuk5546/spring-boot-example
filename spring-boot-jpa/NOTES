@@ -1,0 +1,29 @@
+#JPA+Spring boot
+##依赖
+1. jpa  
+2. mysql-connector
+```xml
+    <dependency>
+    	<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
+```
+
+##依赖中的spring parent做了什么
+
+1. 提供默认依赖
+2. 默认使用的JDK版本
+3. 省略version信息（可以使用properties的property标签替换）
+
+>默认依赖存储在 spring-boot-depend-dependencies.pom
+
+##JPA默认方法使用
+创建ModelClass，使用`@Entity`标注类，`@id`标注主键，如果需要自增，使用`@GeneratedValue(strategy=GenerationType.AUTO)`  
+![image\ 1.1](./img/Image1_1.jpg)
+新建一个Repository类继承`JpaRepository<ModelClass,long>`或者`CrudRepository<Customer, Long>`  
+调用`@Resource`装配Repository对象，再使用对象调用基本方法。
